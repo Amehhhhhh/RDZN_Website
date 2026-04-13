@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
     <!-- Meta SEO -->
-    <meta name="description" content="RDZN Studio is a full-service creative house crafting 3D cinematics and CG content for gaming, esports, and global IPs.">
+    <meta name="description"
+        content="RDZN Studio is a full-service creative house crafting 3D cinematics and CG content for gaming, esports, and global IPs.">
 </head>
+
 <body class="is-loading">
     <!-- LOADING SCREEN -->
     <div id="loading-screen" class="loading-overlay">
@@ -38,7 +41,7 @@
                     <img src="./media/RDZN_LOGO_TYPE_WHITE.png" alt="RDZN Studio Logo" class="logo-img">
                 </a>
             </div>
-            
+
             <nav class="header-center">
                 <!-- Data attributes for future page routing -->
                 <a href="#" data-page="services" class="nav-link">Services</a>
@@ -46,7 +49,7 @@
                 <a href="#" data-page="work" class="nav-link">Our Work</a>
                 <a href="#" data-page="career" class="nav-link">Career</a>
             </nav>
-            
+
             <div class="header-right">
                 <button id="contact-btn" class="action-btn">Contact</button>
             </div>
@@ -82,7 +85,7 @@
                     IPs.
                 </p>
             </div>
-            
+
             <!-- Clickable area to trigger showreel -->
             <div id="hero-click-area" class="hero-click-area" aria-label="Play Showreel"></div>
         </section>
@@ -92,21 +95,66 @@
             <div class="ticker-label">PARTNER THAT TRUSTED US</div>
             <div class="ticker-wrapper">
                 <div class="ticker-track">
-                    <!-- Client Logos Placholders (repeated for seamless loop) -->
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    
-                    <!-- Duplicate for infinite seamless scroll -->
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
-                    <div class="client-block"></div>
+                    <!-- Client Logos (repeated for seamless loop) -->
+                    <!-- TWEAK SIZES HERE: Change '--logo-scale' from 1.0 to 1.2 for bigger, 0.8 for smaller -->
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_AOE.png"
+                            alt="AOE"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_EWC.png"
+                            alt="EWC"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_VCT.png"
+                            alt="VCT"></div>
+                    <div class="client-block" style="--logo-scale: 1.5;"><img
+                            src="./media/client_logos/logo_doritos.png" alt="Doritos"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_fnatic.png"
+                            alt="Fnatic"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_lag.png"
+                            alt="LAG"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img src="./media/client_logos/logo_nmbrs.png"
+                            alt="Nmbrs"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img
+                            src="./media/client_logos/logo_papercrown.png" alt="Papercrown"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_redbull.png" alt="Red Bull"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_riot.png"
+                            alt="Riot"></div>
+                    <div class="client-block" style="--logo-scale: 1.2;"><img src="./media/client_logos/logo_saber.png"
+                            alt="Saber"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img
+                            src="./media/client_logos/logo_strangerthings.png" alt="Stranger Things"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_trackmania.png" alt="Trackmania"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_ubisoft.png" alt="Ubisoft"></div>
+
+                    <!-- Duplicate for infinite seamless scroll (make sure scales match) -->
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_AOE.png"
+                            alt="AOE"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_EWC.png"
+                            alt="EWC"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img src="./media/client_logos/logo_VCT.png"
+                            alt="VCT"></div>
+                    <div class="client-block" style="--logo-scale: 1.5;"><img
+                            src="./media/client_logos/logo_doritos.png" alt="Doritos"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_fnatic.png"
+                            alt="Fnatic"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_lag.png"
+                            alt="LAG"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img src="./media/client_logos/logo_nmbrs.png"
+                            alt="Nmbrs"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img
+                            src="./media/client_logos/logo_papercrown.png" alt="Papercrown"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_redbull.png" alt="Red Bull"></div>
+                    <div class="client-block" style="--logo-scale: 2.0;"><img src="./media/client_logos/logo_riot.png"
+                            alt="Riot"></div>
+                    <div class="client-block" style="--logo-scale: 1.2;"><img src="./media/client_logos/logo_saber.png"
+                            alt="Saber"></div>
+                    <div class="client-block" style="--logo-scale: 3.0;"><img
+                            src="./media/client_logos/logo_strangerthings.png" alt="Stranger Things"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_trackmania.png" alt="Trackmania"></div>
+                    <div class="client-block" style="--logo-scale: 1.0;"><img
+                            src="./media/client_logos/logo_ubisoft.png" alt="Ubisoft"></div>
                 </div>
             </div>
         </footer>
@@ -121,7 +169,10 @@
             <div class="email-container">
                 <span id="contact-email">hello@rdznstudio.com</span>
                 <button id="copy-email-btn" aria-label="Copy to clipboard">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
                 </button>
             </div>
             <p id="copy-tooltip" class="copy-tooltip">Copied!</p>
@@ -142,4 +193,5 @@
     <!-- JS -->
     <script src="./js/main.js"></script>
 </body>
+
 </html>
