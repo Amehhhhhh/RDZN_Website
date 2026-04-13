@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDZN Studio</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Meta SEO -->
+    <meta name="description" content="RDZN Studio is a full-service creative house crafting 3D cinematics and CG content for gaming, esports, and global IPs.">
+</head>
+<body class="is-loading">
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen" class="loading-overlay">
+        <div id="loading-mask" class="loading-fade-to-black"></div>
+        <div class="loading-ui">
+            <span class="loading-text">LOADING</span>
+            <div class="loading-bar-container">
+                <div class="loading-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="custom-cursor" class="custom-cursor">
+        <div class="cursor-icon-wrapper">
+            <img src="./media/RDZN_LOGO_WHITE.png" alt="Cursor icon" class="cursor-icon" />
+        </div>
+        <span class="cursor-text">play showreel</span>
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <main class="main-wrapper">
+        <!-- HEADER -->
+        <header class="site-header">
+            <div class="header-left">
+                <a href="/" class="logo-link" aria-label="Reload Home">
+                    <img src="./media/RDZN_LOGO_TYPE_WHITE.png" alt="RDZN Studio Logo" class="logo-img">
+                </a>
+            </div>
+            
+            <nav class="header-center">
+                <!-- Data attributes for future page routing -->
+                <a href="#" data-page="services" class="nav-link">Services</a>
+                <a href="#" data-page="about" class="nav-link">About Us</a>
+                <a href="#" data-page="work" class="nav-link">Our Work</a>
+                <a href="#" data-page="career" class="nav-link">Career</a>
+            </nav>
+            
+            <div class="header-right">
+                <button id="contact-btn" class="action-btn">Contact</button>
+            </div>
+        </header>
+
+        <!-- HERO AREA -->
+        <section class="hero-area">
+            <div class="video-background">
+                <video id="hero-bg-video" autoplay loop muted playsinline>
+                    <source src="./media/website_background.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="hero-decoration top-left">⌜<br><span class="deco-text">2K20</span></div>
+            <div class="hero-decoration top-right">⌝<br><span class="deco-text">2K20</span></div>
+            <div class="hero-decoration bottom-left text-left">
+                <span class="deco-cross">×<br>×<br>×</span><br><br>
+                <span class="deco-sub">FROM<br><span class="bold">ITALY</span></span>
+            </div>
+            <div class="hero-decoration bottom-right text-right">
+                <span class="deco-sub">TO<br><span class="bold">WORLDWIDE</span></span><br><br>
+                <span class="cross-corner">⌟</span>
+            </div>
+
+            <div class="hero-content">
+                <p class="hero-text">
+                    <strong>REDZONE</strong> is a full-service creative<br>
+                    house crafting 3D cinematics and CG<br>
+                    content for gaming, esports, and global<br>
+                    IPs.
+                </p>
+            </div>
+            
+            <!-- Clickable area to trigger showreel -->
+            <div id="hero-click-area" class="hero-click-area" aria-label="Play Showreel"></div>
+        </section>
+
+        <!-- FOOTER TICKER -->
+        <footer class="site-footer">
+            <div class="ticker-label">PARTNER THAT TRUSTED US</div>
+            <div class="ticker-wrapper">
+                <div class="ticker-track">
+                    <!-- Client Logos Placholders (repeated for seamless loop) -->
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    
+                    <!-- Duplicate for infinite seamless scroll -->
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                    <div class="client-block"></div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MODALS -->
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            <h2 class="modal-title">Get in touch</h2>
+            <div class="email-container">
+                <span id="contact-email">hello@rdznstudio.com</span>
+                <button id="copy-email-btn" aria-label="Copy to clipboard">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+            <p id="copy-tooltip" class="copy-tooltip">Copied!</p>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="video-modal" class="modal-overlay hidden">
+        <button class="modal-close" aria-label="Close showreel">×</button>
+        <div class="player-container">
+            <!-- SHOWREEL VIDEO TO BE ADDED -->
+            <video id="showreel-video" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="./js/main.js"></script>
+</body>
+</html>
