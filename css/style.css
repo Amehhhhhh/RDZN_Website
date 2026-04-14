@@ -232,7 +232,10 @@ body.in-modal .custom-cursor {
 
 .header-center {
     display: flex;
-    gap: 50px;
+    gap: 80px; /* Increased from 50px */
+    position: absolute;
+    left: 49.5%;
+    transform: translateX(-50%);
 }
 
 .nav-link {
@@ -347,6 +350,63 @@ body.in-modal .custom-cursor {
     font-size: 1rem;
 }
 
+/* Base structural styles for animation wrappers */
+.anim-container {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.anim-idle {
+    display: inline-block;
+    animation: deco-idle 8s ease-in-out infinite;
+}
+
+/* Stagger the animations so they offset from each other */
+.deco-tl-corner .anim-idle { animation-delay: 0s; }
+.deco-tl-text .anim-idle { animation-delay: 1.2s; }
+.deco-tc-cross .anim-idle { animation-delay: 2.5s; }
+.deco-tr-corner .anim-idle { animation-delay: 3.8s; }
+.deco-mr-text .anim-idle { animation-delay: 5.1s; }
+.deco-bl-crosses .anim-idle { animation-delay: 6.4s; }
+.deco-br-crosses .anim-idle { animation-delay: 7.7s; }
+.deco-bc-cross .anim-idle { animation-delay: 1.5s; }
+
+/* The hover "snap" effect on proximity */
+.anim-container.near {
+    transform: scale(1.6) rotate(90deg);
+}
+
+/* Overrides for Top Corners (No Rotation) */
+.deco-tl-corner .anim-idle,
+.deco-tr-corner .anim-idle {
+    animation-name: deco-idle-no-rotate;
+}
+.deco-tl-corner .anim-container.near,
+.deco-tr-corner .anim-container.near {
+    transform: scale(1.6);
+}
+
+@keyframes deco-idle {
+    0% { transform: translateY(0px) rotate(0deg); }
+    15% { transform: translateY(-5px) rotate(0deg); }
+    30% { transform: translateY(5px) rotate(0deg); }
+    45% { transform: translateY(-5px) rotate(0deg); }
+    60% { transform: translateY(5px) rotate(0deg); }
+    75% { transform: translateY(0px) rotate(0deg); }
+    85% { transform: translateY(0px) rotate(180deg); } /* occasional spin */
+    90% { transform: translateY(0px) rotate(360deg); } /* finish spin */
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+
+@keyframes deco-idle-no-rotate {
+    0% { transform: translateY(0px); }
+    15% { transform: translateY(-5px); }
+    30% { transform: translateY(5px); }
+    45% { transform: translateY(-5px); }
+    60% { transform: translateY(5px); }
+    75%, 100% { transform: translateY(0px); }
+}
+
 .deco-tr-corner {
     top: 105px;
     right: 45px;
@@ -427,7 +487,7 @@ body.in-modal .custom-cursor {
 }
 
 .hero-text {
-    font-size: 0.7rem;
+    font-size: 1.05rem;
     line-height: 1.5;
     color: #e0e0e0;
     font-weight: 300;
@@ -436,7 +496,7 @@ body.in-modal .custom-cursor {
 .phonk-text {
     font-family: var(--font-heading);
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 1.05rem;
     font-weight: normal;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -583,6 +643,19 @@ body.in-modal .custom-cursor {
 
 .modal-overlay.hidden .modal-content {
     transform: scale(0.9);
+}
+
+.contact-modal-logo {
+    width: 65px;
+    height: auto;
+    margin: 0 auto 20px auto;
+    display: block;
+    opacity: 0.95;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-modal-logo:hover {
+    transform: scale(1.05); /* very small interaction touch */
 }
 
 .modal-title {

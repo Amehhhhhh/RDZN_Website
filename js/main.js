@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     // Track mouse position
+    const animContainers = document.querySelectorAll('.anim-container');
+
     document.addEventListener('mousemove', (e) => {
         // Show cursor if hidden
         if (cursor.style.opacity === '') {
@@ -43,6 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Update position (using translate3d for performance)
         cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+
+        // Hover Proximity Logic
+        animContainers.forEach(container => {
+            const rect = container.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Calculate distance between mouse and element center
+            const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+            
+            // Trigger threshold distance
+            if (dist < 100) {
+                container.classList.add('near');
+            } else {
+                container.classList.remove('near');
+            }
+        });
     });
 
     // Handle interactive element hover
@@ -127,17 +146,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- COPY EMAIL LOGIC ---
     const copyBtn = document.getElementById('copy-email-btn');
-    const emailText = document.getElementById('contact-email').innerText;
     const copyTooltip = document.getElementById('copy-tooltip');
 
     copyBtn.addEventListener('click', async () => {
+        const emailText = document.getElementById('contact-email').textContent.trim();
         try {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
+            if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(emailText);
             } else {
-                // Fallback
+                // Fallback for insecure contexts (like local file:// viewing)
                 const textArea = document.createElement("textarea");
                 textArea.value = emailText;
+                // Move it off-screen to avoid scrolling or visual blips
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
                 document.body.appendChild(textArea);
                 textArea.focus();
                 textArea.select();
