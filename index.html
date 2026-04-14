@@ -66,20 +66,26 @@
             </div>
 
             <!-- Decorative Elements -->
-            <div class="hero-decoration top-left">⌜<br><span class="deco-text">2K20</span></div>
-            <div class="hero-decoration top-right">⌝<br><span class="deco-text">2K20</span></div>
-            <div class="hero-decoration bottom-left text-left">
-                <span class="deco-cross">×<br>×<br>×</span><br><br>
-                <span class="deco-sub">FROM<br><span class="bold">ITALY</span></span>
-            </div>
-            <div class="hero-decoration bottom-right text-right">
-                <span class="deco-sub">TO<br><span class="bold">WORLDWIDE</span></span><br><br>
-                <span class="cross-corner">⌟</span>
-            </div>
+            <div class="hero-deco deco-tl-corner">⌜</div>
+            <div class="hero-deco deco-tl-text">2K20</div>
+            
+            <div class="hero-deco deco-tc-cross">×</div>
+            
+            <div class="hero-deco deco-tr-corner">⌝</div>
+            <div class="hero-deco deco-mr-text">2K20</div>
+            
+            <div class="hero-deco deco-bl-crosses">×<br>×<br>×</div>
+            <div class="hero-deco deco-br-crosses">×<br>×<br>×</div>
+
+            <div class="hero-deco deco-bl-text"><span class="small-text">FROM</span><br><span class="large-text">ITALY</span></div>
+
+            <div class="hero-deco deco-bc-cross">×</div>
+
+            <div class="hero-deco deco-br-text"><span class="small-text">TO</span><br><span class="large-text">WORLDWIDE</span></div>
 
             <div class="hero-content">
                 <p class="hero-text">
-                    <strong>REDZONE</strong> is a full-service creative<br>
+                    <span class="phonk-text">REDZONE</span> is a full-service creative<br>
                     house crafting 3D cinematics and CG<br>
                     content for gaming, esports, and global<br>
                     IPs.
@@ -183,9 +189,9 @@
     <div id="video-modal" class="modal-overlay hidden">
         <button class="modal-close" aria-label="Close showreel">×</button>
         <div class="player-container">
-            <!-- SHOWREEL VIDEO TO BE ADDED -->
-            <video id="showreel-video" controls>
-                <source src="" type="video/mp4">
+            <video id="showreel-video" controls playsinline>
+                <source src="./media/showreel.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
         </div>
     </div>

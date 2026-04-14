@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoModal = document.getElementById('video-modal');
     const heroClickArea = document.getElementById('hero-click-area');
     const heroBgVideo = document.getElementById('hero-bg-video');
+    const showreelVideo = document.getElementById('showreel-video');
     const modals = document.querySelectorAll('.modal-overlay');
     const closeBtns = document.querySelectorAll('.modal-close');
 
@@ -81,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroBgVideo) {
             heroBgVideo.pause(); // Pause background loop
         }
+        if (showreelVideo) {
+            showreelVideo.currentTime = 0;
+            showreelVideo.play().catch(e => console.error("Auto-play prevented:", e));
+        }
     });
 
     // Generic Open Modal
@@ -93,6 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeModal() {
         modals.forEach(m => m.classList.add('hidden'));
         body.classList.remove('in-modal');
+        
+        // Stop showreel if playing
+        if (showreelVideo) {
+            showreelVideo.pause();
+        }
+        
         // Resume background video if paused
         if (heroBgVideo && heroBgVideo.paused) {
             heroBgVideo.play().catch(e => console.log('Autoplay prevented', e));
