@@ -133,6 +133,40 @@ button {
 }
 
 /* Custom Cursor */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-text {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    color: #fff;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.cursor-text.active {
+    opacity: 1;
+}
+
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -140,52 +174,31 @@ button {
     pointer-events: none;
     z-index: var(--z-cursor);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     transform: translate(-50%, -50%); /* Start centered conceptually */
     opacity: 0; /* Hidden until mouse moves */
     transition: opacity 0.3s ease;
 }
 
-.cursor-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
+.cursor-logo {
+    width: 32px;
+    height: auto;
+    animation: logo-idle-squish 6s ease-in-out infinite;
+    transform-origin: center;
 }
 
-.cursor-icon {
-    width: 90%;
-}
-
-.cursor-text {
-    font-family: var(--font-deco);
-    font-size: 1.1rem;
-    margin-top: 8px;
-    letter-spacing: 2px;
-    opacity: 1;
-    transition: opacity 0.3s;
+@keyframes logo-idle-squish {
+    0%, 70% { transform: scale(1, 1) rotate(0deg); }
+    75% { transform: scale(1.15, 0.85) rotate(-5deg); } /* Squish + Tilt Left */
+    80% { transform: scale(0.85, 1.15) rotate(5deg); }  /* Stretch + Tilt Right */
+    85% { transform: scale(1.05, 0.95) rotate(-2deg); } /* Settle + Minor Tilt */
+    90%, 100% { transform: scale(1, 1) rotate(0deg); }
 }
 
 /* Cursor States */
-body.interacting .cursor-icon-wrapper {
-    transform: scale(0.35);
-    background: #fff;
-}
-body.interacting .cursor-icon {
-    display: none;
-}
-body.interacting .cursor-text {
-    opacity: 0;
-}
-
-body.is-loading .custom-cursor {
+body.is-loading .custom-cursor,
+body.is-loading .cursor-dot {
     display: none;
 }
 
@@ -195,7 +208,8 @@ body.in-modal {
 body.in-modal a, body.in-modal button {
     cursor: pointer;
 }
-body.in-modal .custom-cursor {
+body.in-modal .custom-cursor,
+body.in-modal .cursor-dot {
     display: none;
 }
 
@@ -242,11 +256,30 @@ body.in-modal .custom-cursor {
     font-family: var(--font-heading);
     font-size: 1rem;
     letter-spacing: 0.5px;
-    transition: color 0.3s ease;
+    height: 1.2rem;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: flex-start;
 }
 
-.nav-link:hover {
-    color: var(--color-muted);
+.nav-text-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-text-track span {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    display: block;
+}
+
+.nav-text-track span:nth-child(2) {
+    color: var(--color-muted); /* Incoming word rolls up as gray */
+}
+
+.nav-link:hover .nav-text-track {
+    transform: translateY(-50%);
 }
 
 .action-btn {
@@ -262,7 +295,8 @@ body.in-modal .custom-cursor {
 
 .action-btn:hover {
     transform: scale(1.05);
-    background: #e0e0e0;
+    background: #e51a3a;
+    color: #000; /* Ensuring text stays black as requested */
 }
 
 /* Hero Area */
@@ -510,7 +544,7 @@ body.in-modal .custom-cursor {
 
 /* Footer Ticker */
 .site-footer {
-    height: 100px;
+    height: 60px;
     display: flex;
     align-items: center;
     border-top: 1px solid rgba(255,255,255,0.1);
@@ -522,11 +556,11 @@ body.in-modal .custom-cursor {
 
 .ticker-label {
     position: absolute;
-    top: 8px;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--font-heading);
-    font-size: 0.65rem;
+    font-size: 0.52rem;
     letter-spacing: 2px;
     color: #555;
     white-space: nowrap;
@@ -535,7 +569,7 @@ body.in-modal .custom-cursor {
 
 .ticker-wrapper {
     width: 100%;
-    margin-top: 12px;
+    margin-top: 8px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -548,9 +582,9 @@ body.in-modal .custom-cursor {
 .ticker-track {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
     animation: scrollTicker 45s linear infinite;
-    padding-right: 60px; /* Matching gap for seamless scroll */
+    padding-right: 40px; /* Matching gap for seamless scroll */
     width: max-content;
 }
 
@@ -562,8 +596,8 @@ body.in-modal .custom-cursor {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 180px;
-    height: 60px;
+    width: 110px;
+    height: 36px;
     flex-shrink: 0;
     transition: transform 0.3s;
 }

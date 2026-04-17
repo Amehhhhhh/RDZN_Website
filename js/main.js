@@ -33,18 +33,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CUSTOM CURSOR ---
     const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorText = document.getElementById('cursor-text');
     const body = document.body;
 
     // Track mouse position
     const animContainers = document.querySelectorAll('.anim-container');
+    const heroClickArea = document.getElementById('hero-click-area');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+    let isCursorActive = false;
+
+    // Show/Hide "CLICK" text on hover
+    if (heroClickArea && cursorText) {
+        heroClickArea.addEventListener('mouseenter', () => {
+            cursorText.classList.add('active');
+        });
+        heroClickArea.addEventListener('mouseleave', () => {
+            cursorText.classList.remove('active');
+        });
+    }
 
     document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
         // Show cursor if hidden
-        if (cursor.style.opacity === '') {
+        if (!isCursorActive && cursor) {
             cursor.style.opacity = '1';
+            if (cursorDot) cursorDot.style.opacity = '1';
+            isCursorActive = true;
         }
-        // Update position (using translate3d for performance)
-        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+
+        if (cursorDot) {
+            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }
 
         // Hover Proximity Logic
         animContainers.forEach(container => {
@@ -64,12 +89,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle interactive element hover
-    const interactables = document.querySelectorAll('a, button, .hero-click-area');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => body.classList.add('interacting'));
-        el.addEventListener('mouseleave', () => body.classList.remove('interacting'));
-    });
+    // Smooth cursor follow loop
+    let orbitAngle = 0;
+    const orbitRadius = 35;
+
+    function renderCursor() {
+        if (isCursorActive && cursor) {
+            // Increment angle for continuous orbit
+            orbitAngle += 0.04;
+            
+            // Calculate target position offset by the orbit
+            const targetX = mouseX + Math.cos(orbitAngle) * orbitRadius;
+            const targetY = mouseY + Math.sin(orbitAngle) * orbitRadius;
+
+            // Lerp mathematical smoothing towards the orbiting target
+            cursorX += (targetX - cursorX) * 0.1;
+            cursorY += (targetY - cursorY) * 0.1;
+            
+            // Update position (using translate3d for performance)
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+        }
+        requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
 
     // Header Links (Prevent default)
     const navLinks = document.querySelectorAll('.nav-link');
@@ -84,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactModal = document.getElementById('contact-modal');
     const contactBtn = document.getElementById('contact-btn');
     const videoModal = document.getElementById('video-modal');
-    const heroClickArea = document.getElementById('hero-click-area');
     const heroBgVideo = document.getElementById('hero-bg-video');
     const showreelVideo = document.getElementById('showreel-video');
     const modals = document.querySelectorAll('.modal-overlay');
