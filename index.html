@@ -42,36 +42,46 @@
                 </a>
             </div>
 
-            <nav class="header-center">
-                <!-- Data attributes for future page routing -->
-                <a href="#" data-page="services" class="nav-link">
-                    <span class="nav-text-track">
-                        <span>Services</span>
-                        <span>Services</span>
-                    </span>
-                </a>
-                <a href="#" data-page="about" class="nav-link">
-                    <span class="nav-text-track">
-                        <span>About Us</span>
-                        <span>About Us</span>
-                    </span>
-                </a>
-                <a href="#" data-page="work" class="nav-link">
-                    <span class="nav-text-track">
-                        <span>Our Work</span>
-                        <span>Our Work</span>
-                    </span>
-                </a>
-                <a href="#" data-page="career" class="nav-link">
-                    <span class="nav-text-track">
-                        <span>Career</span>
-                        <span>Career</span>
-                    </span>
-                </a>
-            </nav>
+            <!-- Hamburger toggle (visible on mobile only via CSS) -->
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
 
-            <div class="header-right">
-                <button id="contact-btn" class="action-btn">Contact</button>
+            <!-- Mobile menu wrapper: this whole block slides in on mobile -->
+            <div id="mobile-menu" class="mobile-menu">
+                <nav class="header-center">
+                    <!-- Data attributes for future page routing -->
+                    <a href="#" data-page="services" class="nav-link">
+                        <span class="nav-text-track">
+                            <span>Services</span>
+                            <span>Services</span>
+                        </span>
+                    </a>
+                    <a href="#" data-page="about" class="nav-link">
+                        <span class="nav-text-track">
+                            <span>About Us</span>
+                            <span>About Us</span>
+                        </span>
+                    </a>
+                    <a href="#" data-page="work" class="nav-link">
+                        <span class="nav-text-track">
+                            <span>Our Work</span>
+                            <span>Our Work</span>
+                        </span>
+                    </a>
+                    <a href="#" data-page="career" class="nav-link">
+                        <span class="nav-text-track">
+                            <span>Career</span>
+                            <span>Career</span>
+                        </span>
+                    </a>
+                </nav>
+
+                <div class="header-right">
+                    <button id="contact-btn" class="action-btn">Contact</button>
+                </div>
             </div>
         </header>
 
@@ -123,7 +133,10 @@
             </div>
 
             <!-- Clickable area to trigger showreel -->
-            <div id="hero-click-area" class="hero-click-area" aria-label="Play Showreel"></div>
+            <div id="hero-click-area" class="hero-click-area" aria-label="Play Showreel">
+                <!-- Mobile-only showreel hint (hidden on desktop via CSS) -->
+                <span class="mobile-showreel-hint">▶ PLAY SHOWREEL</span>
+            </div>
         </section>
 
         <!-- FOOTER TICKER -->

@@ -12,7 +12,7 @@
     src: url('../font/BebasNeue-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
 }
 
 /* Base Variables */
@@ -739,7 +739,7 @@ body.in-modal .cursor-dot {
     opacity: 1;
 }
 
-/* Video Modal */
+/* Video Player Modal */
 .player-container {
     width: 80%;
     max-width: 1200px;
@@ -756,4 +756,397 @@ body.in-modal .cursor-dot {
     width: 100%;
     height: 100%;
     outline: none;
+}
+
+/* ===================================================================
+   HAMBURGER MENU (hidden on desktop, visible on mobile via media query)
+   =================================================================== */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    z-index: 1001;
+    padding: 0;
+    cursor: pointer;
+}
+
+.menu-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease;
+    transform-origin: center;
+}
+
+/* Hamburger to X animation when menu is open */
+.menu-toggle.active .menu-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle.active .menu-bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .menu-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu overlay (only activates in media query) */
+.mobile-menu {
+    display: contents; /* On desktop, acts as if wrapper doesn't exist */
+}
+
+/* Mobile showreel hint (hidden on desktop) */
+.mobile-showreel-hint {
+    display: none;
+}
+
+/* ===================================================================
+   TOUCH DEVICE OVERRIDES
+   =================================================================== */
+body.is-touch-device {
+    cursor: auto;
+}
+body.is-touch-device a,
+body.is-touch-device button {
+    cursor: auto;
+}
+body.is-touch-device .custom-cursor,
+body.is-touch-device .cursor-dot {
+    display: none !important;
+}
+
+/* ===================================================================
+   RESPONSIVE: TABLETS & SMALL LAPTOPS (max-width: 1024px)
+   =================================================================== */
+@media (max-width: 1024px) {
+    .site-header {
+        padding: 0 30px;
+    }
+
+    .header-center {
+        gap: 40px;
+    }
+
+    .hero-area {
+        padding: 0 30px;
+    }
+
+    .deco-tl-corner { left: 30px; }
+    .deco-tl-text { left: 35px; }
+    .deco-bl-crosses { left: 35px; }
+    .deco-bl-text { left: 35px; }
+
+    .deco-tr-corner { right: 30px; }
+    .deco-mr-text { right: 35px; }
+    .deco-br-crosses { right: 35px; }
+    .deco-br-text { right: 35px; }
+
+    .site-footer {
+        padding: 0 30px;
+    }
+}
+
+/* ===================================================================
+   RESPONSIVE: MOBILE (max-width: 768px)
+   =================================================================== */
+@media (max-width: 768px) {
+    /* --- Custom Cursor: hide completely --- */
+    .custom-cursor,
+    .cursor-dot {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto;
+    }
+    a, button {
+        cursor: auto;
+    }
+
+    /* --- Header: compact with hamburger --- */
+    .site-header {
+        height: 65px;
+        padding: 0 20px;
+    }
+
+    .logo-img {
+        height: 38px;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger */
+    }
+
+    /* Mobile menu: full-screen overlay */
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 8, 8, 0.97);
+        z-index: var(--z-header);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s;
+    }
+
+    .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Nav links: stacked vertically, large touch targets */
+    .mobile-menu .header-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        position: static;
+        left: auto;
+        transform: none;
+    }
+
+    .mobile-menu .nav-link {
+        font-size: 1.5rem;
+        height: auto;
+        overflow: visible;
+    }
+
+    .mobile-menu .nav-text-track {
+        /* On mobile, simplified — no roll animation, just show first span */
+        flex-direction: row;
+    }
+    .mobile-menu .nav-text-track span:nth-child(2) {
+        display: none;
+    }
+    .mobile-menu .nav-link:hover .nav-text-track {
+        transform: none;
+    }
+
+    /* Contact button in mobile menu */
+    .mobile-menu .header-right {
+        display: flex;
+    }
+    .mobile-menu .action-btn {
+        font-size: 1.1rem;
+        padding: 14px 40px;
+    }
+
+    /* --- Hero Area --- */
+    .hero-area {
+        padding: 0 24px;
+        align-items: flex-end;
+        padding-bottom: 100px;
+    }
+
+    .hero-area::before {
+        height: 120px;
+    }
+
+    .hero-area::after {
+        height: 250px;
+    }
+
+    /* Let text reflow naturally on mobile */
+    .hero-text br {
+        display: none;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .phonk-text {
+        font-size: 0.95rem;
+    }
+
+    /* --- Decorative Elements: simplify --- */
+    .deco-tl-corner { top: 80px; left: 20px; font-size: 0.85rem; }
+    .deco-tl-text { top: 105px; left: 24px; font-size: 0.8rem; }
+    .deco-tc-cross { top: 80px; }
+    .deco-tr-corner { top: 80px; right: 20px; font-size: 0.85rem; }
+    .deco-mr-text { display: none; } /* Hide to reduce clutter */
+    .deco-bl-crosses { display: none; }
+    .deco-br-crosses { display: none; }
+    .deco-bl-text { bottom: 15px; left: 24px; }
+    .deco-br-text { bottom: 15px; right: 24px; }
+    .deco-bc-cross { bottom: 15px; }
+
+    .small-text { font-size: 0.5rem; }
+    .large-text { font-size: 0.85rem; }
+
+    /* --- Mobile Showreel Hint --- */
+    .mobile-showreel-hint {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-deco);
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+        color: rgba(255, 255, 255, 0.9);
+        white-space: nowrap;
+        z-index: 10;
+        animation: showreel-pulse 3s ease-in-out infinite;
+        pointer-events: none; /* Let taps pass through to hero-click-area */
+    }
+
+    @keyframes showreel-pulse {
+        0%, 100% { opacity: 0.75; }
+        50% { opacity: 1; }
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+        height: 50px;
+        padding: 0 15px;
+    }
+
+    .ticker-label {
+        font-size: 0.45rem;
+        top: 3px;
+    }
+
+    .client-block {
+        width: 80px;
+        height: 28px;
+    }
+
+    .ticker-track {
+        gap: 25px;
+    }
+
+    /* --- Modals --- */
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        font-size: 2.2rem;
+        /* Bigger tap target */
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        padding: 35px 20px;
+        margin: 0 15px;
+        border-radius: 10px;
+    }
+
+    .contact-modal-logo {
+        width: 50px;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .email-container {
+        font-size: 1rem;
+        padding: 12px 16px;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .player-container {
+        width: 95%;
+        border-radius: 6px;
+    }
+}
+
+/* ===================================================================
+   RESPONSIVE: SMALL PHONES (max-width: 480px)
+   =================================================================== */
+@media (max-width: 480px) {
+    .site-header {
+        height: 55px;
+        padding: 0 15px;
+    }
+
+    .logo-img {
+        height: 32px;
+    }
+
+    .hero-area {
+        padding: 0 18px;
+        padding-bottom: 80px;
+    }
+
+    .hero-text {
+        font-size: 0.88rem;
+    }
+
+    .phonk-text {
+        font-size: 0.88rem;
+    }
+
+    /* Further simplify deco */
+    .deco-tl-corner,
+    .deco-tr-corner,
+    .deco-tc-cross {
+        display: none;
+    }
+
+    .deco-tl-text { top: 70px; left: 18px; }
+
+    .deco-bl-text { left: 18px; }
+    .deco-br-text { right: 18px; }
+    .deco-bc-cross { display: none; }
+
+    .mobile-showreel-hint {
+        font-size: 0.75rem;
+    }
+
+    .site-footer {
+        height: 44px;
+        padding: 0 10px;
+    }
+
+    .client-block {
+        width: 65px;
+        height: 24px;
+    }
+
+    .ticker-track {
+        gap: 18px;
+    }
+
+    .email-container {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .modal-content {
+        padding: 28px 16px;
+        margin: 0 10px;
+    }
+
+    .mobile-menu .nav-link {
+        font-size: 1.3rem;
+    }
+
+    .mobile-menu .header-center {
+        gap: 25px;
+    }
 }
